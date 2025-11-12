@@ -1,4 +1,4 @@
-export default async function PageDetails({ postId }) {
+export default async function PageDetails({ postId }: { postId: string }) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const response = await fetch(
