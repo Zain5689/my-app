@@ -1,12 +1,9 @@
 import PageDetails from "@/app/components/postDetails";
 import { Suspense } from "react";
 
-export default async function PageDetail({
-  params,
-}: {
-  params: { postId: string };
-}) {
-  const { postId } = params;
+export default async function PageDetail({ params }: any) {
+  const resolvedParams = await params;
+  const { postId } = resolvedParams;
 
   const loadings = (
     <div className="flex flex-col items-center justify-center min-h-screen  p-6">
@@ -35,11 +32,10 @@ export default async function PageDetail({
       </h1>
     </div>
   );
+
   return (
-    <>
-      <Suspense fallback={loadings}>
-        <PageDetails postId={postId} />
-      </Suspense>
-    </>
+    <Suspense fallback={loadings}>
+      <PageDetails postId={postId} />
+    </Suspense>
   );
 }
